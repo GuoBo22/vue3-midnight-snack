@@ -1,7 +1,7 @@
 <script setup>
-import { useCategoryStore } from '@/stores/category';
-// 使用pinia的数据
-const categoryStore = useCategoryStore()
+// import { useCategoryStore } from '@/stores/category';
+// // 使用pinia的数据
+// const categoryStore = useCategoryStore()
 
 </script>
 
@@ -11,7 +11,7 @@ const categoryStore = useCategoryStore()
     <header class='app-header'>
       <div class="container">
         <h1 class="logo">
-          <RouterLink to="/">小兔鲜</RouterLink>
+          <RouterLink to="/">宵品</RouterLink>
         </h1>
         <!-- <ul class="app-header-nav">
           <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">

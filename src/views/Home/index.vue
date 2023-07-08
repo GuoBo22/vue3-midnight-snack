@@ -1,5 +1,16 @@
+<script setup>
+import HomeBorderCard from "./components/HomeBorderCard.vue"
+
+import { useCategoryStore } from '@/stores/category'
+import { onMounted } from 'vue'
+
+const categoryStore = useCategoryStore()
+onMounted(() => categoryStore.getCategory())
+
+</script>
+
 <template>
-  <div style="height: 2000px;">
-    我是首页
+  <div class="container">
+    <HomeBorderCard />
   </div>
 </template>

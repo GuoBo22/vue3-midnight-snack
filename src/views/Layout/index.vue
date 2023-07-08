@@ -7,8 +7,8 @@ import LayoutStickyTop from './components/LayoutStickyTop.vue'
 import { useCategoryStore } from '@/stores/category'
 import { onMounted } from 'vue'
 
-const categoryStore = useCategoryStore()
-onMounted(() => categoryStore.getCategory())
+// const categoryStore = useCategoryStore()
+// onMounted(() => categoryStore.getCategory())
 
 </script>
 
