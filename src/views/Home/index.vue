@@ -1,6 +1,5 @@
 <script setup>
 import HomeBorderCard from "./components/HomeBorderCard.vue"
-
 import { useCategoryStore } from '@/stores/category'
 import { onMounted } from 'vue'
 
