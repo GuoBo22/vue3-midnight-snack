@@ -13,7 +13,7 @@ onMounted(() => categoryStore.getCategory())
 </script>
 
 <template>
-  <LayoutNav />
+  <!-- <LayoutNav /> -->
   <LayoutStickyTop />
   <LayoutHeader />
   <RouterView />

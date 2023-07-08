@@ -31,7 +31,7 @@
 
 <style scoped lang="scss">
 .app-topnav {
-  background: #161525;
+  background: #555555;
   ul {
     display: flex;
     height: 53px;
@@ -56,7 +56,7 @@
 
       ~li {
         a {
-          border-left: 2px solid #666;
+          border-left: 2px solid #cdcdcd;
         }
       }
     }
