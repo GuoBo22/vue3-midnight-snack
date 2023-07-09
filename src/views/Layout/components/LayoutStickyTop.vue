@@ -1,10 +1,10 @@
 <script setup>
 import { useScroll } from '@vueuse/core'
-import { useCategoryStore } from '@/stores/category';
+// import { useCategoryStore } from '@/stores/category';
 // 测y位置
 const { y } = useScroll(window)
-// 使用pinia的数据
-const categoryStore = useCategoryStore()
+// // 使用pinia的数据
+// const categoryStore = useCategoryStore()
 </script>
 
 <template>
@@ -206,3 +206,4 @@ const categoryStore = useCategoryStore()
   }
 }
 </style>
+@/stores/homepage

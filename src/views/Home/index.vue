@@ -1,10 +1,15 @@
 <script setup>
 import HomeBorderCard from "./components/HomeBorderCard.vue"
-import { useCategoryStore } from '@/stores/category'
+import { useCategoryStore, useStoresStore} from '@/stores/homepage'
 import { onMounted } from 'vue'
 
 const categoryStore = useCategoryStore()
-onMounted(() => categoryStore.getCategory())
+const storesStore = useStoresStore()
+onMounted(() => {
+  categoryStore.getCategory()
+  storesStore.getStores()
+})
+
 
 </script>
 

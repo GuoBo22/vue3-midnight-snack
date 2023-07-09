@@ -10,3 +10,14 @@ export function getCategoryAPI(){
         }
     })
 }
+
+export function getStoresAPI(){
+    return httpInstance({
+        url: '/home/tabs/comment-stores',
+        method: "get",
+        // 测试用参数
+        params: {
+            "test": true
+        }
+    })
+}

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getCategoryAPI } from '@/apis/home'
+import { getCategoryAPI, getStoresAPI} from '@/apis/home'
 
 export const useCategoryStore = defineStore('category', () => {
     // 导航列表的数据管理
@@ -13,5 +13,19 @@ export const useCategoryStore = defineStore('category', () => {
     return {
         categoryList,
         getCategory
+    }
+})
+
+export const useStoresStore = defineStore('stores', () => {
+    // 导航列表的数据管理
+    const storesList = ref([])
+    const getStores = async () => {
+        const res = await getStoresAPI()
+        storesList.value = res.data
+    }
+
+    return {
+        storesList,
+        getStores
     }
 })
