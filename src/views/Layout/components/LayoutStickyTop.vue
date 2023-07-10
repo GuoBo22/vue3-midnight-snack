@@ -12,7 +12,7 @@ const { y } = useScroll(window)
     <div class="container-full-background">
       <div class="overlay"></div>
       <div class="container">
-        <RouterLink class="logo" to="/" />
+        <!-- <RouterLink class="logo" to="/" /> -->
         <!-- 导航区域 -->
         <div class="search">
           <i class="iconfont icon-search"></i>

@@ -4,11 +4,28 @@ import LayoutHeader from './components/LayoutHeader.vue'
 import LayoutFooter from './components/LayoutFooter.vue'
 import LayoutStickyTop from './components/LayoutStickyTop.vue'
 
-import { useCategoryStore } from '@/stores/homepage'
+import HomeBorderCard from "./components/HomeBorderCard.vue"
+import { useCartListStore, useCategoryStore, useStoresStore} from '@/stores/homepage'
 import { onMounted } from 'vue'
+import HomeSideBar from "./components/HomeSideBar.vue"
+import { onBeforeRouteUpdate } from "vue-router"
 
-// const categoryStore = useCategoryStore()
-// onMounted(() => categoryStore.getCategory())
+const categoryStore = useCategoryStore()
+const storesStore = useStoresStore()
+const cartListStore = useCartListStore()
+function loadData(){
+  categoryStore.getCategory()
+  storesStore.getStores()
+  cartListStore.getCartList()
+}
+onMounted(() => {
+  loadData()
+})
+
+onBeforeRouteUpdate(() => {
+  loadData()
+})
+
 
 </script>
 
@@ -16,6 +33,9 @@ import { onMounted } from 'vue'
   <!-- <LayoutNav /> -->
   <LayoutStickyTop />
   <LayoutHeader />
-  <RouterView :key="$route.fullPath"></RouterView>
+  <div class="container">
+    <HomeBorderCard />
+  </div>
+  <HomeSideBar /> 
   <LayoutFooter />
 </template>

@@ -17,7 +17,7 @@ const categoryStore = useCategoryStore();
 
 <template>
     <div class="container">
-        <el-tabs :stretch=true v-infinite-scroll="load" class="tabCards" @tab-change="handleTabChange">
+        <el-tabs :stretch=true class="tabCards" @tab-change="handleTabChange">
             <el-tab-pane v-for="item in categoryStore.categoryList" :key="item.id">
                 <template #label>
                     <span class="homeTabCards-span">
