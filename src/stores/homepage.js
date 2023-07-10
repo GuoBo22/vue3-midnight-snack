@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getCategoryAPI, getStoresAPI, getCartListAPI} from '@/apis/home'
+import { getCategoryAPI, getStoresAPI, getCartListAPI, getShopListAPI} from '@/apis/home'
 
+// 首页分类测试
 export const useCategoryStore = defineStore('category', () => {
-    // 导航列表的数据管理
     const categoryList = ref([])
     const getCategory = async () => {
         const res = await getCategoryAPI()
@@ -15,9 +15,8 @@ export const useCategoryStore = defineStore('category', () => {
         getCategory
     }
 })
-
+// 商店列表测试
 export const useStoresStore = defineStore('stores', () => {
-    // 导航列表的数据管理
     const storesList = ref([])
     const getStores = async () => {
         const res = await getStoresAPI()
@@ -29,9 +28,8 @@ export const useStoresStore = defineStore('stores', () => {
         getStores
     }
 })
-
+// 购物车列表测试
 export const useCartListStore = defineStore('cart', () => {
-    // 导航列表的数据管理
     const cartList = ref([])
     const getCartList = async () => {
         const res = await getCartListAPI()
@@ -41,5 +39,18 @@ export const useCartListStore = defineStore('cart', () => {
     return {
         cartList,
         getCartList
+    }
+})
+// 商店列表
+export const useShopListStore = defineStore('shop', () => {
+    const shopList = ref([])
+    const getShopList = async (page) => {
+        const res = await getShopListAPI(page)
+        shopList.value = res.data
+    }
+
+    return {
+        shopList,
+        getShopList
     }
 })

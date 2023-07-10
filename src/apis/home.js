@@ -1,4 +1,5 @@
 import httpInstance from '@/utils/http'
+import httpInstanceTest from '@/utils/httpTest'
 
 export function getCategoryAPI(){
     return httpInstance({
@@ -26,5 +27,16 @@ export function getCartListAPI(){
     return httpInstance({
         url: '/home/cart-list',
         method: "get"
+    })
+}
+
+export function getShopListAPI(page){
+    return httpInstanceTest({
+        url: '/shop/of/type',
+        method: "get",
+        params:{
+            "typeid": 1, 
+            "page": page
+        }
     })
 }
