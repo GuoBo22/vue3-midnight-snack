@@ -16,6 +16,6 @@ import { onMounted } from 'vue'
   <!-- <LayoutNav /> -->
   <LayoutStickyTop />
   <LayoutHeader />
-  <RouterView />
+  <RouterView :key="$route.fullPath"></RouterView>
   <LayoutFooter />
 </template>

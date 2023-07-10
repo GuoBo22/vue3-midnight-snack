@@ -1,20 +1,11 @@
 <script setup>
 import PurchaseSteps from './components/PurchaseSteps.vue';
-import router from '@/router/index'
-
-function backClick() {
-    try{
-        router.push('/')
-    }catch (error){
-        console.log(error)
-    }
-}
 
 </script>
 
 <template>
     <div class="container">
-        <el-button style="margin: 20px;" size="large" @click="backClick"><i class="iconfont icon-fanhui"></i></el-button>
+        <el-button style="margin: 20px;" size="large" @click="$router.push('/')"><i class="iconfont icon-fanhui"></i></el-button>
         <PurchaseSteps />
     </div>
 </template>
