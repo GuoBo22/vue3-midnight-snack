@@ -21,3 +21,10 @@ export function getStoresAPI(){
         }
     })
 }
+
+export function getCartListAPI(){
+    return httpInstance({
+        url: '/home/cart-list',
+        method: "get"
+    })
+}

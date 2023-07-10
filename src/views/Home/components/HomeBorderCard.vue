@@ -1,22 +1,31 @@
 <script setup>
 import HomeCardPanel from './HomeCardPanel.vue'
-import { useCategoryStore } from '@/stores/homepage';
+import { useCategoryStore } from '@/stores/homepage'
+// import { ElTabs, ElTabPane } from 'element-plus';
+import { ref } from "vue";
 // 使用pinia的数据
-const categoryStore = useCategoryStore()
+const categoryStore = useCategoryStore();
 
+const activeTab = ref(0);
+
+// tabs组件点击切换，tab参数从0开始，逐渐递增
+function handleTabChange(tab) {
+    console.log(tab)
+    activeTab.value = tab
+}
 </script>
 
 <template>
     <div class="container">
-        <el-tabs :stretch=true class="tabCards" v-infinite-scroll="load">
+        <el-tabs :stretch=true v-infinite-scroll="load" class="tabCards" @tab-change="handleTabChange">
             <el-tab-pane v-for="item in categoryStore.categoryList" :key="item.id">
                 <template #label>
-                    <span class="homeTabCards">
+                    <span class="homeTabCards-span">
                         <!-- <el-icon><calendar /></el-icon> -->
                         <span>{{ item.name }}</span>
                     </span>
                 </template>
-                <HomeCardPanel />
+                <HomeCardPanel :message="activeTab" />
                 <!-- <HomeCardPanel storeName="麦当劳"></HomeCardPanel> -->
             </el-tab-pane>
         </el-tabs>
@@ -39,4 +48,4 @@ const categoryStore = useCategoryStore()
         font-size: 30px;
     }
 }
-</style>@/stores/homepage
+</style>

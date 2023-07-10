@@ -1,13 +1,16 @@
 <script setup>
 import HomeBorderCard from "./components/HomeBorderCard.vue"
-import { useCategoryStore, useStoresStore} from '@/stores/homepage'
+import { useCartListStore, useCategoryStore, useStoresStore} from '@/stores/homepage'
 import { onMounted } from 'vue'
+import HomeSideBar from "./components/HomeSideBar.vue"
 
 const categoryStore = useCategoryStore()
 const storesStore = useStoresStore()
+const cartListStore = useCartListStore()
 onMounted(() => {
   categoryStore.getCategory()
   storesStore.getStores()
+  cartListStore.getCartList()
 })
 
 
@@ -17,4 +20,8 @@ onMounted(() => {
   <div class="container">
     <HomeBorderCard />
   </div>
+  <HomeSideBar /> 
 </template>
+
+<style scoped>
+</style>

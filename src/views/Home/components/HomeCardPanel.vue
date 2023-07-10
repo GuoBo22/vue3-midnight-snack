@@ -1,9 +1,14 @@
 <script setup>
-// import { ref } from 'vue'
+import { ref } from 'vue'
 // const currentDate = ref(new Date())
 import { useStoresStore } from '@/stores/homepage';
 // 使用pinia的数据
 const storesStore = useStoresStore()
+
+// 父页面传参
+defineProps({
+    message: String
+})
 
 </script>
 
