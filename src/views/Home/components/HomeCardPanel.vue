@@ -6,9 +6,9 @@ import { useStoresStore } from '@/stores/homepage';
 const storesStore = useStoresStore()
 
 // 父页面传参
-defineProps({
-    message: String
-})
+// defineProps({
+//     message: String
+// })
 
 </script>
 
