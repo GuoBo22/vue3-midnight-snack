@@ -38,11 +38,11 @@ const loadMore = () =>{
                         class="image" />
                     <div style="padding: 14px;">
                         <div style="display: flex; justify-content: space-between;">
-                            <div style="font-weight:bolder; font-size: 16px;">{{item.storeName}}</div>
-                            <div class="store-rate"><i class="iconfont icon-ge_xingji"></i>{{item.storeRate}}/5.0</div>
+                            <div style="font-weight:bolder; font-size: 16px;">{{item.name}}</div>
+                            <div class="store-rate"><i class="iconfont icon-ge_xingji"></i>{{item.score}}/5.0</div>
                         </div>
                         <div class="bottom">
-                            <div class="average-price"><i class="iconfont icon-jine"></i>{{item.averagePrice}}</div>
+                            <div class="average-price"><i class="iconfont icon-jine"></i>{{item.avgPrice}}</div>
                             <div class="delivery-time"><i class="iconfont icon-peisongshijian"></i>{{item.deliveryTime}}min</div>
                             <!-- <time class="time">{{ currentDate }}</time> -->
                             <!-- <el-button text class="button">Operating</el-button> -->

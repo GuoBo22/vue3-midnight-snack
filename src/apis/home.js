@@ -35,8 +35,8 @@ export function getShopListAPI(page){
         url: '/shop/of/type',
         method: "get",
         params:{
-            "typeid": 1, 
-            "page": page
+            "typeId": 1, 
+            "current": page
         }
     })
 }

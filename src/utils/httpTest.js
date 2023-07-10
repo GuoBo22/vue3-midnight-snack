@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const httpInstanceTest = axios.create({
-    baseURL:'http://43.143.214.16:8081',
+    baseURL:'http://localhost:8080/api',
     timeout: 5000
 })
 
