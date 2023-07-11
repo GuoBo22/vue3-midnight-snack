@@ -1,6 +1,7 @@
 <script setup>
 import HomeCardPanel from './HomeCardPanel.vue';
 import { useCategoryStore } from '@/stores/homepage'
+import { onMounted } from 'vue';
 // import { ElTabs, ElTabPane } from 'element-plus';
 import { ref } from "vue";
 // 使用pinia的数据

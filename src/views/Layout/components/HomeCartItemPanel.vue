@@ -2,7 +2,7 @@
 import {onMounted, ref} from 'vue'
 const props = defineProps({
     foodName: String,
-    foodPrice: String,
+    foodPrice: Number,
     imgURL: String,
     foodCount: Number,
 })

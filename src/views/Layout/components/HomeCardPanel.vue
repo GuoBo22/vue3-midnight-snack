@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-// const currentDate = ref(new Date())
 import { useStoresStore } from '@/stores/homepage';
 import { useShopListStore } from '@/stores/homepage';
 import { onMounted } from 'vue';
@@ -18,6 +17,7 @@ function refreshShopList(page){
         shopList.value.push(item)
     })
 }
+
 onMounted(() => {
     refreshShopList(page)
 })
@@ -26,12 +26,32 @@ const loadMore = () =>{
     refreshShopList(page)
 }
 
+// const loading = ref(false)
+// const disabled = computed(() => loading.value)
+// const tempList = ref([])
+// const loadMore = () => {
+//   loading.value = true
+//   setTimeout(() => {
+//     page.value += 1
+//     // refreshShopList(page)
+//     // const {tempList, _} = shopStore.getShopList()
+//     shopStore.getShopList()
+//     shopStore.shopList.forEach(item => {
+//         tempList.value.push(item)
+//     })
+//     console.log(tempList)
+//     tempList.forEach(item => {
+//         shopList.value.push(item)
+//     })
+//   }, 2000)
+// }
+
 </script>
 
 <template>
     <!-- 替换商品详情页面 -->
     <a href="javascript;">
-        <el-row class="el-container" v-infinite-scroll="loadMore" infinite-scroll-distance="400">
+        <el-row class="el-container" v-infinite-scroll="loadMore" infinite-scroll-distance="">
             <el-col v-for="item in shopList" :key="item.id" :span="5" :offset="1" style="padding-bottom: 20px;">
                 <el-card :body-style="{ padding: '0px'}">
                     <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
@@ -51,6 +71,9 @@ const loadMore = () =>{
                 </el-card>
             </el-col>
         </el-row>
+        <!-- <ul v-infinite-scroll="loadMore" :infinite-scroll-disabled="disabled">
+        </ul> -->
+        <!-- <p v-if="loading">Loading...</p> -->
     </a>
 </template>
   

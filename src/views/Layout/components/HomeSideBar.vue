@@ -13,6 +13,11 @@ function cancelClick() {
   drawer.value = false
 }
 
+function deleteClick(id) {
+    let index = cartListStore.cartList.findIndex(obj => obj.id === id);
+    cartListStore.cartList.splice(index, 1)
+}
+
 
 </script>
 
@@ -29,7 +34,7 @@ function cancelClick() {
     <template #default>
       <div style="display: flex; align-items: center;" v-for="item in cartListStore.cartList" :key="id">
         <HomeCartItemPanel :foodName="item.foodName" :foodPrice="item.foodPrice" :imgURL="item.imgURL" :foodCount="item.foodCount" />
-        <el-button type="primary" @click="deleteClick" style="width: 10px;margin: 10px;"><i
+        <el-button type="primary" @click="deleteClick(item.id)" style="width: 10px;margin: 10px;"><i
             class="iconfont icon-shanchu"></i></el-button>
       </div>
     </template>
