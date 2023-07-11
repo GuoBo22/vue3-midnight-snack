@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getCategoryAPI, getStoresAPI, getCartListAPI, getShopListAPI} from '@/apis/home'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
 
 // 首页分类测试
 export const useCategoryStore = defineStore('category', () => {
@@ -53,4 +54,6 @@ export const useShopListStore = defineStore('shop', () => {
         shopList,
         getShopList
     }
+
+    
 })
