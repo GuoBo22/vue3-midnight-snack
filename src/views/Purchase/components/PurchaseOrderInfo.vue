@@ -2,6 +2,7 @@
 import { ref, reactive, toRefs } from 'vue'
 import { useCartListStore } from '@/stores/homepage'
 import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 // 使用pinia调取cartlist
 const totalPrice = ref(0)
@@ -31,6 +32,17 @@ function initPrice() {
 function handleChange(){
     totalPrice.value = 0
     initPrice()
+}
+
+const emit = defineEmits(['get-step'])
+function sendMsg(){
+    emit('get-step', 1)
+}
+
+const router = useRouter()
+function goToPay(){
+    router.push('/pay')
+    sendMsg()
 }
 
 </script>
@@ -79,7 +91,7 @@ function handleChange(){
     <el-divider />
     <div class="big">Total: ￥{{ totalPrice }}</div>
     <div class="footer">
-        <el-button class="payBtn" type="primary" @click="$router.push('/pay')">去支付</el-button>
+        <el-button class="payBtn" type="primary" @click="goToPay">去支付</el-button>
     </div>
 </template>
 

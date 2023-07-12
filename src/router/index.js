@@ -4,6 +4,7 @@ import Layout from '@/views/Layout/index.vue'
 import Purchase from '@/views/Purchase/index.vue'
 import PurchaseOrderInfoVue from '@/views/Purchase/components/PurchaseOrderInfo.vue'
 import PurchasePayment from '@/views/Purchase/components/PurchasePayment.vue'
+import PurchaseFinish from '@/views/Purchase/components/PurchaseFinish.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,10 @@ const router = createRouter({
         {
           path: '/pay',
           component:PurchasePayment,
+        },
+        {
+          path: '/finish',
+          component: PurchaseFinish,
         }
       ]
     }
