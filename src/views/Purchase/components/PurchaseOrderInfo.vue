@@ -85,10 +85,6 @@ function goToPay(){
                 </div>
             </el-card>
         </div>
-        <!-- <PurchaseOrderItemPanel :id="item.id" :foodName="item.foodName" :foodPrice="item.foodPrice" :imgURL="item.imgURL"
-            :foodCount="item.foodCount" :total="totalPrice" @id-message="getIdMessage" @count-message="getCountMessage" /> -->
-        <!-- <el-button type="primary" @click="deleteClick(item.id)" style="width: 10px;margin: 10px;"><i
-                class="iconfont icon-shanchu"></i></el-button> -->
     </div>
     <el-divider />
     <div class="big">Total: ￥{{ totalPrice }}</div>

@@ -5,13 +5,20 @@ import Purchase from '@/views/Purchase/index.vue'
 import PurchaseOrderInfoVue from '@/views/Purchase/components/PurchaseOrderInfo.vue'
 import PurchasePayment from '@/views/Purchase/components/PurchasePayment.vue'
 import PurchaseFinish from '@/views/Purchase/components/PurchaseFinish.vue'
+import Detail from '@/views/Detail/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      component: Layout
+      component: Layout,
+      // children:[
+      //   {
+      //     path: 'detail/:id',
+      //     component:Detail
+      //   }
+      // ]
     },{
       path: '/login',
       component: Login
@@ -32,6 +39,10 @@ const router = createRouter({
           component: PurchaseFinish,
         }
       ]
+    },
+    {
+      path: '/detail/:id',
+      component: Detail,
     }
   ]
 })

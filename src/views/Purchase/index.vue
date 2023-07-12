@@ -16,7 +16,7 @@ const changeStep = (step) =>{
 
 <template>
     <div class="container">
-        <el-button style="margin: 20px;" size="large" @click="$router.push('/')"><i
+        <el-button style="margin: 20px;" size="large" @click="$router.back()"><i
                 class="iconfont icon-fanhui"></i></el-button>
         <!-- <PurchaseSteps /> -->
         <div>

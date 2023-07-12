@@ -48,7 +48,7 @@
             </div>
             <div class="content">
               <h2>Your order is on its way!</h2>
-              <p>Check your mailbox for a tracking code and estimated delivery time.</p>
+              <a @click="$router.replace('/')">点我返回首页</a>
             </div>
           </div>
         </div>
