@@ -1,15 +1,12 @@
 <script setup>
 import { ref, reactive, toRefs } from 'vue'
-import PurchaseOrderItemPanel from './PurchaseOrderItemPanel.vue';
 import { useCartListStore } from '@/stores/homepage'
-import { onBeforeMount } from 'vue';
 import { onMounted } from 'vue';
 
 // 使用pinia调取cartlist
 const totalPrice = ref(0)
 const cartListStore = useCartListStore();
 onMounted(() => {
-    console.log(cartListStore.cartList)
     initPrice()
 })
 // 删除商品函数
@@ -29,7 +26,6 @@ const form = reactive({
 function initPrice() {
     cartListStore.cartList.forEach(item => {
         totalPrice.value += item.foodPrice * item.foodCount
-        console.log(totalPrice.value)
     })
 }
 function handleChange(){

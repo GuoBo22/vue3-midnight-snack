@@ -10,9 +10,9 @@
     <div class="overlay"></div>
     <header class='app-header'>
       <div class="container">
-        <h1 class="logo">
+        <div class="logo">
           <RouterLink to="/">宵品</RouterLink>
-        </h1>
+        </div>
         <!-- <ul class="app-header-nav">
           <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
             <RouterLink to="/">{{ item.name }}</RouterLink>
@@ -35,7 +35,7 @@
                 <li><a href="javascript:;">会员中心</a></li>
               </template>
               <template v-else>
-                <li><a href="javascript:;">请先登录</a></li>
+                <li><a href="javascript:;" @click="$router.push('/login')">请先登录</a></li>
                 <li><a href="javascript:;">帮助中心</a></li>
                 <li><a href="javascript:;">关于我们</a></li>
               </template>
