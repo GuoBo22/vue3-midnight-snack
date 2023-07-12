@@ -27,7 +27,6 @@ const buttonText = computed(() => {
 const getVerificationCode = () => {
   // 处理获取验证码逻辑
   // 在此处可以添加发送请求的代码，获取验证码
-  console.log("按下验证码")
   const phone = form.phone
   getCodeAPI(phone).then(res =>{
     ElMessage(res.msg)
@@ -68,12 +67,10 @@ const toggleLoginType = () => {
 // 登录函数
 const doLogin = () => {
   // const {phone, code, pwd} = form.value
-  console.log("按下登录")
   const phone = form.phone
   const code = form.code
   const pwd = form.pwd
   loginAPI(phone,code,pwd).then(res => {
-    console.log(res)
     ElMessage({
       type:'success',
       message:'登录成功！'

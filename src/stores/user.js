@@ -1,4 +1,4 @@
-import { getUserInfoAPI } from "@/apis/user";
+import { getUserInfoAPI, userLogOutAPI } from "@/apis/user";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
@@ -9,16 +9,22 @@ export const useUserStore = defineStore('user', ()=>{
     // 定义获取接口数据的action函数
     const getUserInfo = async() =>{
         // 调用API并给userInfo赋值
-        console.log(userToken)
         const res = await getUserInfoAPI(userToken.value)
-        console.log(res)
         userInfo.value = res.data
+    }
+    
+    // 退出函数 清除用户信息
+    const clearUserInfo = async() => {
+        const res = await userLogOutAPI(userToken.value)
+        userToken.value = ''
+        userInfo.value = {}
     }
 
     return{
         userToken,
         userInfo,
-        getUserInfo
+        getUserInfo,
+        clearUserInfo
     }
 },{
     persist: true

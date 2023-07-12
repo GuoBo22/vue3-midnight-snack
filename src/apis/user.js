@@ -47,3 +47,14 @@ export const getUserInfoAPI = (token) =>{
         method: 'GET'
     })
 }
+
+// 通知后台用户登出
+export const userLogOutAPI = (token) =>{
+    return httpInstanceTest({
+        headers:{
+            Authorization: token
+        },
+        url: '/user/logout',
+        method: 'POST'
+    })
+}
