@@ -14,6 +14,8 @@ onMounted(() => {
 function deleteClick(id) {
     let index = cartListStore.cartList.findIndex(obj => obj.id === id);
     cartListStore.cartList.splice(index, 1)
+    totalPrice.value = 0
+    initPrice()
 }
 
 

@@ -15,25 +15,23 @@ const changeStep = (step) =>{
 </script>
 
 <template>
-    <div>
-        <div class="container">
-            <el-button style="margin: 20px;" size="large" @click="$router.push('/')"><i
-                    class="iconfont icon-fanhui"></i></el-button>
-            <!-- <PurchaseSteps /> -->
-            <div>
-                <el-card class="box-card" shadow="always">
-                    <el-steps :active="active" finish-status="success" align-center=true style="display: flex;align-items: center;">
-                        <el-step title="订单" />
-                        <el-step title="支付" />
-                        <el-step title="完成！" />
-                    </el-steps>
-                </el-card>
-            </div>
+    <div class="container">
+        <el-button style="margin: 20px;" size="large" @click="$router.push('/')"><i
+                class="iconfont icon-fanhui"></i></el-button>
+        <!-- <PurchaseSteps /> -->
+        <div>
+            <el-card class="box-card" shadow="always">
+                <el-steps :active="active" finish-status="success" align-center=true style="display: flex;align-items: center;">
+                    <el-step title="订单" />
+                    <el-step title="支付" />
+                    <el-step title="完成！" />
+                </el-steps>
+            </el-card>
         </div>
-        <!-- <PurchaseDeliveryAddress />
-        <PurchaseOrderInfo /> -->
-        <RouterView @get-step="changeStep"/>
     </div>
+    <!-- <PurchaseDeliveryAddress />
+    <PurchaseOrderInfo /> -->
+    <RouterView @get-step="changeStep"/>
 </template>
 
 <style scoped>
