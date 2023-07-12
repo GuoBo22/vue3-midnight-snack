@@ -2,13 +2,17 @@
 import { reactive } from 'vue'
 import { ref, onMounted, computed } from 'vue';
 import { loginAPI,getCodeAPI } from '@/apis/user';
+import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user'
 // do not use same name with ref
 const form = reactive({
   phone: '',
   code: '',
   pwd: '',
 })
-
+const userStore = useUserStore()
+const router = useRouter()
 const countdown = ref(120);
 const disableButton = ref(false);
 
@@ -26,7 +30,7 @@ const getVerificationCode = () => {
   console.log("按下验证码")
   const phone = form.phone
   getCodeAPI(phone).then(res =>{
-    console.log(res)
+    ElMessage(res.msg)
   })
   // 禁用按钮，并开始倒计时
   disableButton.value = true;
@@ -70,6 +74,16 @@ const doLogin = () => {
   const pwd = form.pwd
   loginAPI(phone,code,pwd).then(res => {
     console.log(res)
+    ElMessage({
+      type:'success',
+      message:'登录成功！'
+    })
+
+    userStore.userToken = res.data
+    userStore.getUserInfo()
+    if(userStore.userToken){
+      router.replace({path: '/'})
+    }
   })
 }
 

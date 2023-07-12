@@ -2,6 +2,9 @@
 // import { useCategoryStore } from '@/stores/category';
 // // 使用pinia的数据
 // const categoryStore = useCategoryStore()
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore()
+
 
 </script>
 
@@ -22,8 +25,8 @@
         <nav class="app-topnav">
           <div class="container-nav">
             <ul>
-              <template v-if="true">
-                <li><a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a></li>
+              <template v-if="userStore.userToken">
+                <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{ userStore.userInfo.nickName }}</a></li>
                 <li>
                   <el-popconfirm title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
                     <template #reference>
