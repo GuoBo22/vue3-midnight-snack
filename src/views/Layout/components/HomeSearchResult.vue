@@ -1,65 +1,29 @@
 <script setup>
 import { ref,watch,defineProps } from 'vue'
-import { useStoresStore } from '@/stores/homepage';
-import { useShopListStore } from '@/stores/homepage';
-import { useCategoryStore} from '@/stores/homepage'
 import { onMounted } from 'vue';
 import { computed } from 'vue';
-const props = defineProps(['id']);
-// 使用pinia的数据
-// 测试用storesStore
-const storesStore = useStoresStore()
+import { useSearchStore } from '@/stores/homepage';
+
 // 正常接口
-const shopStore = useShopListStore()
-const categoryStore = useCategoryStore()
+const searchStore = useSearchStore()
 // 定义页码和商店列表
 const page = ref(1)
 const shopList = ref([])
-// 监听typeId变化
-watch(props,(newValue, oldValue) =>{
-    categoryStore.getCategory()
-    page.value = 1
-    console.log(categoryStore.categoryList[props.id].id)
-    refreshShopList(categoryStore.categoryList[props.id].id, 1)
-})
-// 切换页面的时候刷新函数
-function refreshShopList(typeId, page) {
-    shopStore.getShopList(typeId, page)
-    setTimeout(() =>{
-        shopList.value = shopStore.shopList
-    }, 200)
-}
 
 onMounted(() => {
     page.value = 1
-    refreshShopList(1, page.value)
+    // refreshShopList(1, page.value)
+    // searchStore.get
 })
 
-const loading = ref(false)
-const count = ref(0)
-// 判断是否满20个
-const notFull = computed(() => (shopStore.shopCount % 20) != 0)
-// 两个条件都满足才行
-const disabled = computed(() => loading.value || notFull.value)
-const loadMore = function(){
-    loading.value = true
-    page.value += 1
-    shopStore.getShopList(categoryStore.categoryList[props.id].id, page.value)
-    setTimeout(() => {
-        shopStore.shopList.forEach(item =>{
-            shopList.value.push(item)
-        })
-        loading.value = false
-    }, 500)
-}
 
 </script>
 
 <template>
-    <div>
+    <div style="margin-top: 50px;">
         <el-row class="el-container" v-infinite-scroll="loadMore" :infinite-scroll-disabled="disabled">
             <!-- 修改主页商品列表 -->
-            <el-col v-for="item in shopList" :key="item.id" :span="5" :offset="1" style="padding-bottom: 20px;">
+            <el-col v-for="item in searchStore.searchResult" :key="item.id" :span="5" :offset="1" style="padding-bottom: 20px;">
                 <RouterLink :to="`/detail/${item.id}`">
                     <el-card :body-style="{ padding: '0px' }">
                         <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"

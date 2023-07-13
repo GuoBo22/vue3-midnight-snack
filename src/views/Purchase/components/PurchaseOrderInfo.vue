@@ -3,17 +3,21 @@ import { ref, reactive, toRefs } from 'vue'
 import { useCartListStore } from '@/stores/homepage'
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useCartStore, useUserStore } from '@/stores/user';
 
 // 使用pinia调取cartlist
 const totalPrice = ref(0)
 const cartListStore = useCartListStore();
+const cartStore = useCartStore()
+const userStore = useUserStore()
 onMounted(() => {
     initPrice()
+    cartStore.getCart(userStore.userToken)
 })
 // 删除商品函数
 function deleteClick(id) {
-    let index = cartListStore.cartList.findIndex(obj => obj.id === id);
-    cartListStore.cartList.splice(index, 1)
+    cartStore.delCart(userStore.userToken, id)
+    cartStore.getCart(userStore.cartList)
     totalPrice.value = 0
     initPrice()
 }
@@ -27,11 +31,22 @@ const form = reactive({
 })
 // 初始化总价格
 function initPrice() {
-    cartListStore.cartList.forEach(item => {
-        totalPrice.value += item.foodPrice * item.foodCount
-    })
+    // cartListStore.cartList.forEach(item => {
+    //     item.dishes.forEach(dish =>{
+    //         totalPrice.value += dish.price * dish.number
+    //     })
+    // })
+    console.log(cartStore.cartList)
+    for(var i=0; i < cartStore.cartList.length; i++){
+        console.log(cartStore.cartList[i])
+        for(var x=0; x < cartStore.cartList[i].dishes.length; x++){
+            console.log(cartStore.cartList[i].dishes[x].price)
+            totalPrice.value += cartStore.cartList[i].dishes[x].price * cartStore.cartList[i].dishes[x].number
+        }
+    }
 }
-function handleChange(){
+function handleChange(id, number){
+    
     totalPrice.value = 0
     initPrice()
 }
@@ -65,25 +80,28 @@ function goToPay(){
             </el-form>
         </el-card>
     </div>
-    <div class="orderItem" v-for="item in cartListStore.cartList" :key="item.id">
-        <div style="width: 800px; margin-bottom: 5px; margin-top: 5px;">
-            <el-card :body-style="{ padding: '0px' }" shadow="always">
-                <div style="padding: 15px;">
-                    <div style="display: flex;">
-                        <img :src="item.imgURL" class="image" style="height: 70px; margin: 10px; border-radius: 10px;" />
-                        <div class="cardInfo">
-                            <div style="font-size: 20px;">{{ item.foodName }}</div>
-                            <div class="item-price" style="color:red; font-size: 17px;">￥{{ item.foodPrice }}</div>
-                        </div>
-                        <div style="margin-top: 25px;margin-left: auto;">
-                            <el-input-number v-model="item.foodCount" :min="1" @change="handleChange"
-                                style="width: 170px; height: 40px;" />
-                            <el-button type="primary" @click="deleteClick" style="width: 10px;margin: 10px;"><i
-                                    class="iconfont icon-shanchu"></i></el-button>
+    <div class="orderItem" v-for="item in cartStore.cartList">
+        <div style="font-size: 2em;font-weight: bold;">
+            {{ item.name }}
+            <div v-for="dish in item.dishes" style="width: 800px; margin-bottom: 5px; margin-top: 5px;">
+                <el-card :body-style="{ padding: '0px' }" shadow="always">
+                    <div style="padding: 15px;">
+                        <div style="display: flex;">
+                            <img :src="dish.image" class="image" style="height: 70px; margin: 10px; border-radius: 10px;" />
+                            <div class="cardInfo">
+                                <div style="font-size: 20px;">{{ dish.name }}</div>
+                                <div class="item-price" style="color:red; font-size: 17px;">￥{{ dish.price }}</div>
+                            </div>
+                            <div style="margin-top: 25px;margin-left: auto;">
+                                <el-input-number v-model="dish.number" :min="1" @change="handleChange(dish.id, dish.number)"
+                                    style="width: 170px; height: 40px;" />
+                                <el-button type="primary" @click="deleteClick(dish.id)" style="width: 10px;margin: 10px;"><i
+                                        class="iconfont icon-shanchu"></i></el-button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </el-card>
+                </el-card>
+            </div>
         </div>
     </div>
     <el-divider />

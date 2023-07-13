@@ -13,10 +13,7 @@ httpInstanceTest.interceptors.request.use(config => {
 
 // axios 响应式拦截器
 httpInstanceTest.interceptors.response.use(res => res.data, e => {
-    ElMessage({
-        type:'warning',
-        message: e.response.data.msg
-    })
+
     return Promise.reject(e)
 })
 

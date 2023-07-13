@@ -6,14 +6,19 @@ import HomeBorderCard from "./components/HomeBorderCard.vue"
 import { useCartListStore, useCategoryStore, useShopListStore, useStoresStore} from '@/stores/homepage'
 import { onMounted } from 'vue'
 import HomeSideBar from "./components/HomeSideBar.vue"
+import { useCartStore, useUserStore } from '@/stores/user'
 
 const categoryStore = useCategoryStore()
 const storesStore = useStoresStore()
 const cartListStore = useCartListStore()
+const cartStore = useCartStore()
+const userStore = useUserStore()
 onMounted(() => {
   categoryStore.getCategory()
   storesStore.getStores()
   cartListStore.getCartList()
+  cartStore.getCart(userStore.userToken)
+  // cartStore.getCart(userStore.userToken)
 })
 
 </script>
@@ -23,7 +28,8 @@ onMounted(() => {
   <LayoutStickyTop />
   <LayoutHeader />
   <div class="container">
-    <HomeBorderCard />
+    <!-- <HomeBorderCard /> -->
+    <RouterView />
   </div>
   <HomeSideBar /> 
   <LayoutFooter />

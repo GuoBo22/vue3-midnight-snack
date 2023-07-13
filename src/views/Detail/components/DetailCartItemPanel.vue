@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div style="width: 250px; margin-bottom: 5px; margin-top: 5px;">
+  <div style="width: 300px; margin-bottom: 5px; margin-top: 5px;">
     <el-card :body-style="{ padding: '0px' }" shadow="always">
       <div style="padding: 15px;">
         <div style="display: flex;justify-content: space-between;">
@@ -22,7 +22,7 @@ onMounted(() => {
           <div class="cardInfo">
             <div style="font-size: 16px;">{{foodName}}</div>
             <div class="item-price" style="color:red;">￥{{foodPrice}}</div>
-            <el-input-number size="small" v-model="num" :min="1" :max="10" @change="handleChange" style="width: 100px"/>
+            <el-input-number size="small" v-model="num" :min="1" @change="handleChange" style="width: 100px"/>
           </div>
         </div>
       </div>

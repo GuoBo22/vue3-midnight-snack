@@ -4,11 +4,21 @@
 // const categoryStore = useCategoryStore()
 import { useUserStore } from '@/stores/user';
 import { useRouter } from 'vue-router';
+import { useSearchStore } from '@/stores/homepage'
+import { ref } from 'vue'
+const searchText = ref('')
 const userStore = useUserStore()
 const router = useRouter()
+const searchStore = useSearchStore()
 const confirm = () =>{
   userStore.clearUserInfo()
   router.replace('/')
+}
+// 主页搜索函数
+const search = () => {
+  console.log("搜索款输入了",searchText)
+  searchStore.searchShop(searchText.value)
+  router.push('/search')
 }
 
 </script>
@@ -31,7 +41,7 @@ const confirm = () =>{
           <div class="container-nav">
             <ul>
               <template v-if="userStore.userToken">
-                <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{ userStore.userInfo.nickName }}</a></li>
+                <li><a @click="$router.push('/user')"><i class="iconfont icon-user"></i>{{ userStore.userInfo.nickName }}</a></li>
                 <li>
                   <el-popconfirm @confirm="confirm" title="确认退出吗?" confirm-button-text="确认" cancel-button-text="取消">
                     <template #reference>
@@ -55,8 +65,8 @@ const confirm = () =>{
 
       </div>
       <div class="search">
-        <i class="iconfont icon-search"></i>
-        <input type="text" placeholder="Hey! Wanna eat something?">
+        <i class="iconfont icon-search" @click="search"></i>
+        <input v-model="searchText" type="text" placeholder="Hey! Wanna eat something?">
       </div>
     </header>
   </div>

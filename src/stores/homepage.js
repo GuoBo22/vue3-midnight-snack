@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getCategoryAPI, getStoresAPI, getCartListAPI, getShopListAPI} from '@/apis/home'
+import { getCategoryAPI, getStoresAPI, getCartListAPI, getShopListAPI, getSearchResultAPI} from '@/apis/home'
 import { createPersistedState } from 'pinia-plugin-persistedstate'
 
-// 首页分类测试
+// 首页分类
 export const useCategoryStore = defineStore('category', () => {
     const categoryList = ref([])
     const getCategory = async () => {
@@ -30,7 +30,7 @@ export const useStoresStore = defineStore('stores', () => {
     }
 })
 // 购物车列表测试
-export const useCartListStore = defineStore('cart', () => {
+export const useCartListStore = defineStore('cart-test', () => {
     const cartList = ref([])
     const getCartList = async () => {
         const res = await getCartListAPI()
@@ -56,5 +56,22 @@ export const useShopListStore = defineStore('shop', () => {
         shopCount,
         shopList,
         getShopList
+    }
+})
+
+// 模糊搜索商店
+export const useSearchStore = defineStore('search', () => {
+    const searchResult = ref([])
+    const shopCount = ref(0)
+    const searchShop = async (keyword) => {
+        const res = await getSearchResultAPI(keyword)
+        searchResult.value = res.data
+        shopCount.value = searchResult.value.length
+    }
+
+    return{
+        shopCount,
+        searchResult,
+        searchShop
     }
 })

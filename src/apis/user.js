@@ -58,3 +58,34 @@ export const userLogOutAPI = (token) =>{
         method: 'POST'
     })
 }
+
+// 商品加入购物车
+export const addCartAPI = (token,dishId) =>{
+    return httpInstanceTest({
+        headers:{
+            Authorization: token
+        },
+        url: `/cart/add/?dishId=${dishId}`,
+        method: 'GET',
+    })
+}
+
+export const getCartAPI = (token) =>{
+    return httpInstanceTest({
+        headers:{
+            Authorization: token
+        },
+        url: '/cart/q',
+        method: 'GET',
+    })
+}
+
+export const delCartAPI = (token, dishId) => {
+    return httpInstanceTest({
+        headers:{
+            Authorization: token
+        },
+        url:`/cart/remove/${dishId}`,
+        method: 'GET'
+    })
+}

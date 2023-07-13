@@ -71,15 +71,14 @@ const doLogin = () => {
   const code = form.code
   const pwd = form.pwd
   loginAPI(phone,code,pwd).then(res => {
-    ElMessage({
-      type:'success',
-      message:'登录成功！'
-    })
-
+    
     userStore.userToken = res.data
     userStore.getUserInfo()
     if(userStore.userToken){
+      ElMessage.success('登录成功！')
       router.replace({path: '/'})
+    }else{
+      ElMessage.error('不对哦')
     }
   })
 }
@@ -115,7 +114,7 @@ const doLogin = () => {
               @click="getVerificationCode">{{ buttonText }}</el-button>
           </el-form-item>
           <el-form-item label="密码" v-else="loginType === '验证码登录'">
-            <el-input v-model="form.pwd" />
+            <el-input v-model="form.pwd" type="password" show-password/>
           </el-form-item>
           <!-- <el-button @click="toggleLoginType" size="small" style="margin-left: 100px; padding: 0px;" bg>{{ loginType }}</el-button> -->
         </el-form>

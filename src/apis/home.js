@@ -1,6 +1,7 @@
 import httpInstance from '@/utils/http'
 import httpInstanceTest from '@/utils/httpTest'
 
+// 主页分类
 export function getCategoryAPI(){
     return httpInstanceTest({
         url: '/shop-type/list',
@@ -26,6 +27,7 @@ export function getCartListAPI(){
     })
 }
 
+// 获取商铺列表 id=分类 page=页面
 export function getShopListAPI(id, page){
     return httpInstanceTest({
         url: '/shop/of/type',
@@ -34,5 +36,13 @@ export function getShopListAPI(id, page){
             "typeId": id, 
             "current": page
         }
+    })
+}
+
+// 主页模糊搜索
+export function getSearchResultAPI(keyword){
+    return httpInstanceTest({
+        url: `/shop/q/like/${keyword}`,
+        method: 'GET',
     })
 }

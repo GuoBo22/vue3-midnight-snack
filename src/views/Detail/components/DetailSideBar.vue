@@ -1,14 +1,14 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import HomeCartItemPanel from './HomeCartItemPanel.vue';
+import DetailCartItemPanel from './DetailCartItemPanel.vue';
 import { useCartListStore } from '@/stores/homepage'
-import { useCartStore, useUserStore } from '@/stores/user'
+import { useCartStore } from '@/stores/user'
 import { ElMessageBox } from 'element-plus'
 
 // 使用pinia调取cartlist
 const cartListStore = useCartListStore(); // 测试用
 const cartStore = useCartStore()
-const userStore = useUserStore()
+
 
 const drawer = ref(false)
 const direction = ref('rtl')
@@ -40,7 +40,7 @@ function deleteClick(id) {
           {{ item.name }}
           <div v-for="dish in item.dishes"
             style="width: auto; display: flex;justify-content: space-between;align-items: center;">
-            <HomeCartItemPanel :foodName="dish.title" :foodPrice="dish.price" :imgURL="dish.image"
+            <DetailCartItemPanel :foodName="dish.title" :foodPrice="dish.price" :imgURL="dish.image"
               :foodCount="dish.number" />
             <el-button type="primary" @click="deleteClick(dish.id)" style="width: 10px;margin: 10px;"><i
                 class="iconfont icon-shanchu"></i></el-button>
