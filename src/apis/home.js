@@ -2,13 +2,9 @@ import httpInstance from '@/utils/http'
 import httpInstanceTest from '@/utils/httpTest'
 
 export function getCategoryAPI(){
-    return httpInstance({
-        url: '/home/category/tabs',
+    return httpInstanceTest({
+        url: '/shop-type/list',
         method: "GET",
-        // 测试用参数
-        params: {
-            "test": true
-        }
     })
 }
 
@@ -30,12 +26,12 @@ export function getCartListAPI(){
     })
 }
 
-export function getShopListAPI(page){
+export function getShopListAPI(id, page){
     return httpInstanceTest({
         url: '/shop/of/type',
         method: "GET",
         params:{
-            "typeId": 1, 
+            "typeId": id, 
             "current": page
         }
     })

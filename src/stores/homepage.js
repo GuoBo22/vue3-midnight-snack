@@ -45,15 +45,16 @@ export const useCartListStore = defineStore('cart', () => {
 // 商店列表
 export const useShopListStore = defineStore('shop', () => {
     const shopList = ref([])
-    const getShopList = async (page) => {
-        const res = await getShopListAPI(page)
+    const shopCount = ref(0)
+    const getShopList = async (id, page) => {
+        const res = await getShopListAPI(id, page)
         shopList.value = res.data
+        shopCount.value = shopList.value.length
     }
 
     return {
+        shopCount,
         shopList,
         getShopList
     }
-
-    
 })

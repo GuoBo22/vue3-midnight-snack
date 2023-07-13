@@ -6,6 +6,7 @@ import PurchaseOrderInfoVue from '@/views/Purchase/components/PurchaseOrderInfo.
 import PurchasePayment from '@/views/Purchase/components/PurchasePayment.vue'
 import PurchaseFinish from '@/views/Purchase/components/PurchaseFinish.vue'
 import Detail from '@/views/Detail/index.vue'
+import User from '@/views/User/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -43,8 +44,18 @@ const router = createRouter({
     {
       path: '/detail/:id',
       component: Detail,
+    },
+    {
+      path: '/user',
+      component: User
     }
-  ]
+  ],
+  // 配置路由滚动行为
+  scrollBehavior(){
+    return{
+      top: 0
+    }
+  }
 })
 
 export default router

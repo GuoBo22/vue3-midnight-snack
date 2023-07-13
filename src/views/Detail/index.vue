@@ -2,10 +2,20 @@
 import { useCartListStore } from '@/stores/homepage'
 import { onMounted } from 'vue';
 import HomeSideBar from './components/HomeSideBar.vue'
+import { useRoute } from 'vue-router';
+import { useShopDetailStore } from '@/stores/shop'
+const route = useRoute()
+const shopDetailStore = useShopDetailStore()
 const cartListStore = useCartListStore();
+const shopId = route.params.id
 onMounted(() => {
-    
+    getDetail()
 })
+
+function getDetail(){
+    shopDetailStore.getDetailInfo(shopId)
+    shopDetailStore.getDetailMenu(shopId)
+}
 </script>
 <template>
     <div style="width: 100%;height: 100%;background-color: #f4f1eb;">
@@ -26,39 +36,39 @@ onMounted(() => {
                 </div>
                 <div class="info" style="margin-top: 10px;">
                     <div style="font-size: 3em;font-weight: bold;">
-                        商铺名称
+                        {{ shopDetailStore.detailInfo.name }}
                     </div>
                     <div style="color: #555555; line-height: 25px; letter-spacing: 5px;">
                         <div>
-                            <i class="iconfont icon-dizhiguanli"></i>地址
+                            <i class="iconfont icon-dizhiguanli"></i>{{shopDetailStore.detailInfo.address}}
                         </div>
                         <div>
-                            <i class="iconfont icon-price"></i>均价
+                            <i class="iconfont icon-price"></i>{{shopDetailStore.detailInfo.avgPrice}}
                         </div>
                         <div>
-                            <i class="iconfont icon-yishouchu"></i>销量
+                            <i class="iconfont icon-yishouchu"></i>{{shopDetailStore.detailInfo.sold}}
                         </div>
                         <div>
-                            <i class="iconfont icon-pingfen"></i>评分
+                            <i class="iconfont icon-pingfen"></i>{{ shopDetailStore.detailInfo.score }}
                         </div>
                         <div>
-                            <i class="iconfont icon-shijian"></i>营业时间
+                            <i class="iconfont icon-shijian"></i>{{shopDetailStore.detailInfo.openHours}}
                         </div>
                     </div>
                 </div>
             </el-card>
             <el-card class="foodCard" shadow="always">
-                <div class="orderItem" v-for="item in cartListStore.cartList" :key="item.id">
+                <div class="orderItem" v-for="item in shopDetailStore.detailMenu" :key="item.id">
                     <div style="width: 800px; margin-bottom: 5px; margin-top: 5px;">
                         <el-card :body-style="{ padding: '0px' }" shadow="always">
                             <div style="padding: 15px;">
                                 <div style="display: flex;">
-                                    <img :src="item.imgURL" class="image"
+                                    <img :src="item.image" class="image"
                                         style="height: 70px; margin: 10px; border-radius: 10px;" />
                                     <div class="cardInfo">
-                                        <div style="font-size: 20px;">{{ item.foodName }}</div>
-                                        <div style="color: #777777; font-size: smaller;"><i>我是描述</i></div>
-                                        <div class="item-price" style="color:red; font-size: 17px;">￥{{ item.foodPrice }}</div>
+                                        <div style="font-size: 20px;">{{ item.title }}</div>
+                                        <div style="color: #777777; font-size: smaller;"><i>{{item.description}}</i></div>
+                                        <div class="item-price" style="color:red; font-size: 17px;">￥{{ item.price }}</div>
                                     </div>
                                     <div style="margin-top: 25px;margin-left: auto;">
                                         <el-button type="primary" style="margin-right: 25px;">加入购物车</el-button>
