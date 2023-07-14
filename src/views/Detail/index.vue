@@ -36,6 +36,13 @@ const addCart = (id) => {
         // 跳转到登录页
     }
 }
+
+const refreshCart = () => {
+    setTimeout(function(){
+        cartStore.getCart(userStore.userToken)
+    }, 300)
+    console.log(cartStore.cartList)
+}
 </script>
 <template>
     <div style="width: 100%;height: 100%;background-color: #f4f1eb;">
@@ -101,7 +108,9 @@ const addCart = (id) => {
                 </div>
             </el-card>
         </div>
-        <DetailSideBar />
+        <div @click="refreshCart">
+            <DetailSideBar />
+        </div>
     </div>
 </template>
     

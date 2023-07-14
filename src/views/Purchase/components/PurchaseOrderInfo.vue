@@ -89,7 +89,7 @@ function goToPay(){
                         <div style="display: flex;">
                             <img :src="dish.image" class="image" style="height: 70px; margin: 10px; border-radius: 10px;" />
                             <div class="cardInfo">
-                                <div style="font-size: 20px;">{{ dish.name }}</div>
+                                <div style="font-size: 20px;">{{ dish.title }}</div>
                                 <div class="item-price" style="color:red; font-size: 17px;">￥{{ dish.price }}</div>
                             </div>
                             <div style="margin-top: 25px;margin-left: auto;">
